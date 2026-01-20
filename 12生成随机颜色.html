@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>生成随机颜色</title>
+        <style>
+            body {
+                display: flex;
+                margin: 130px auto;
+                flex-wrap: wrap;
+                align-content: space-around;
+                align-items: center;
+                width: 1000px;
+                height: 500px;
+                gap: 50px;
+                background-color: #66666664;
+                border-radius: 30px;
+                border: 1px solid #8d8d8d;
+            }
+
+            div {
+                margin: 10px auto;
+                width: 100px;
+                height: 100px;
+                border-radius: 10px;
+                border: 1px solid #951414;
+                /* background-color: #666; */
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="box">我是随机颜色的</div>
+        <div>我是灰色的，因为没有被选中</div>
+        <div class="box">我是随机颜色的</div>
+        <div class="box">我是随机颜色的</div>
+        <div class="box">我是随机颜色的</div>
+        <script>
+            // 该函数接受布尔类参数，表示颜色的格式是十六进制还是rgb格式
+            function getRandomColor(flag = true) {
+                if (flag) {
+                    // 十六进制色值
+                    let str = '#'
+                    let arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+                    // 利用for循环让str加六次随机的列表数值
+                    for (let i = 0; i < 6; i++) {
+                        let random = Math.floor(Math.random() * arr.length)
+                        // 利用字符拼接，组成十六进制颜色值
+                        str += arr[random]
+                    }
+                    return str
+                } else {
+                    // RGB色值
+                    let r = Math.floor(Math.random() * 256)
+                    let g = Math.floor(Math.random() * 256)
+                    let b = Math.floor(Math.random() * 256)
+                    return `rgb(${r},${g},${b})`
+                }
+            }
+
+            // for (let i = 0; i < 12; i++) {
+            //     document.write(`<div style="background-color: ${getRandomColor(true)};"></div>`)
+            // }
+            
+            // 提前体验dom操作
+            const boxes = document.querySelectorAll('.box')// 这里返回的是列表
+            // 使用for循环，遍历数组里面的元素
+            for (let i = 0; i < boxes.length; i++) {
+                // 这里需要遍历列表，给每个元素都替换为随机背景颜色
+                boxes[i].style.backgroundColor = getRandomColor()
+            }
+
+        </script>
+    </body>
+
+</html>
